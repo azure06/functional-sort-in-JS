@@ -11,7 +11,7 @@ const mergeSort = values => {
 };
 
 const quickSort = values => {
-  const split = ([pivot, ...tail]) => {
+  const sort = ([pivot, ...tail]) => {
     const [left, right] = tail.reduce(
       ([left, right], value) => {
         return value < pivot
@@ -20,11 +20,16 @@ const quickSort = values => {
       },
       [[], []],
     );
-    const l = left.length >= 2 ? split(left) : [...left];
-    const r = right.length >= 2 ? split(right) : [...right];
+    const l = left.length >= 2 ? sort(left) : [...left];
+    const r = right.length >= 2 ? sort(right) : [...right];
 
     return [...l, pivot, ...r];
   };
 
-  return split(values);
+  return sort(values);
+};
+
+export default {
+  mergeSort,
+  quickSort,
 };
