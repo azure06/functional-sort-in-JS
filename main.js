@@ -1,16 +1,45 @@
-const mergeSort = values => {
-  const subdivide = ([first, second, ...tail], accumulator = []) => {
-    return first && second && tail
-      ? subdivide(tail, [...accumulator, [first, second]])
-      : first && second
-      ? [...accumulator, [first, second]]
-      : first
-      ? [...accumulator, [first]]
-      : [];
+const mergesort = values => {
+  const subdivide = ([head, ...tail], accumulator = []) => {
+    return head && tail
+      ? subdivide(tail, [...accumulator, [head]])
+      : head
+      ? [...accumulator, [head]]
+      : accumulator;
   };
+
+  const merge = ([arr1, arr2, ...tail]) => {
+    const sort = (arr1 = [], arr2 = []) => {
+      const [head, tail] = arr2.reduce(
+        ([head, tail], currentValue) => {
+          const sliceArray = (arr, index) => [
+            arr.slice(0, index),
+            arr.slice(index)
+          ];
+          const index = tail.findIndex(tailVal => currentValue < tailVal);
+          const [left, right] =
+            index !== -1 ? sliceArray(tail, index) : [tail, []];
+          return [[...head, ...left, currentValue], right];
+        },
+        [[], arr1]
+      );
+      return [...head, ...tail];
+    };
+
+    return tail.length > 0
+      ? [sort(arr1, arr2), ...merge(tail)]
+      : [sort(arr1, arr2)];
+  };
+
+  const repeat = arr => {
+    const mergedArray = merge(arr);
+    return mergedArray.length > 1 ? repeat(mergedArray) : mergedArray;
+  };
+
+  const [head] = repeat(subdivide(values));
+  return head;
 };
 
-const quickSort = values => {
+const quicksort = values => {
   const sort = ([pivot, ...tail]) => {
     const [left, right] = tail.reduce(
       ([left, right], value) => {
@@ -18,7 +47,7 @@ const quickSort = values => {
           ? [[...left, value], right]
           : [left, [value, ...right]];
       },
-      [[], []],
+      [[], []]
     );
     const l = left.length >= 2 ? sort(left) : [...left];
     const r = right.length >= 2 ? sort(right) : [...right];
@@ -29,7 +58,7 @@ const quickSort = values => {
   return sort(values);
 };
 
-export default {
-  mergeSort,
-  quickSort,
-};
+// export default {
+//   mergeSort: mergesort,
+//   quickSort: quicksort
+// };
