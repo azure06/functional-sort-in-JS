@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azure06/functional-sort-in-JS.git"
+    "url": "git+https://github.com/azure06/functional-sort-in-TS.git"
   },
   "keywords": [
     "functional",
