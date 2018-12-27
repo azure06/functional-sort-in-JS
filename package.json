@@ -21,9 +21,9 @@
   "author": "Gabriele Sato",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/azure06/functional-sort-in-JS/issues"
+    "url": "https://github.com/azure06/functional-sort-in-TS/issues"
   },
-  "homepage": "https://github.com/azure06/functional-sort-in-JS#readme",
+  "homepage": "https://github.com/azure06/functional-sort-in-TS#readme",
   "devDependencies": {
     "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.2.2"
