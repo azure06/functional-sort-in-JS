@@ -1,0 +1,31 @@
+{
+  "name": "functional-sort-in-ts",
+  "version": "1.0.0",
+  "description": "Functional sort algorithms in TypeScript",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azure06/functional-sort-in-JS.git"
+  },
+  "keywords": [
+    "functional",
+    "sort",
+    "sorting",
+    "algorithms",
+    "typescript"
+  ],
+  "author": "Gabriele Sato",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azure06/functional-sort-in-JS/issues"
+  },
+  "homepage": "https://github.com/azure06/functional-sort-in-JS#readme",
+  "devDependencies": {
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2.2"
+  }
+}
