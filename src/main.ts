@@ -1,12 +1,10 @@
 const mergesort = (values: number[]) => {
   const subdivide = (
     [head, ...tail]: number[],
-    accumulator: number[][] = [],
+    accumulator: number[][] = []
   ): number[][] => {
-    return head && tail
+    return head !== undefined
       ? subdivide(tail, [...accumulator, [head]])
-      : head
-      ? [...accumulator, [head]]
       : accumulator;
   };
 
@@ -16,14 +14,14 @@ const mergesort = (values: number[]) => {
         ([head, tail]: number[][], currentValue: number) => {
           const sliceArray = (arr: number[], index: number) => [
             arr.slice(0, index),
-            arr.slice(index),
+            arr.slice(index)
           ];
           const index = tail.findIndex(tailVal => currentValue < tailVal);
           const [left, right] =
             index !== -1 ? sliceArray(tail, index) : [tail, []];
           return [[...head, ...left, currentValue], right];
         },
-        [[], arr1],
+        [[], arr1]
       );
       return [...head, ...tail];
     };
@@ -33,12 +31,12 @@ const mergesort = (values: number[]) => {
       : [sort(arr1, arr2)];
   };
 
-  const repeat = (arr: number[][]): number[][] => {
+  const repeatMerge = (arr: number[][]): number[][] => {
     const mergedArray = merge(arr);
-    return mergedArray.length > 1 ? repeat(mergedArray) : mergedArray;
+    return mergedArray.length > 1 ? repeatMerge(mergedArray) : mergedArray;
   };
 
-  const [head] = repeat(subdivide(values));
+  const [head] = repeatMerge(subdivide(values));
   return head;
 };
 
@@ -50,7 +48,7 @@ const quicksort = (values: number[]) => {
           ? [[...left, value], right]
           : [left, [value, ...right]];
       },
-      [[], []],
+      [[], []]
     );
     const l = left.length >= 2 ? sort(left) : [...left];
     const r = right.length >= 2 ? sort(right) : [...right];
@@ -62,6 +60,6 @@ const quicksort = (values: number[]) => {
 };
 
 export default {
-  mergeSort: mergesort,
-  quickSort: quicksort,
+  mergesort,
+  quicksort
 };
