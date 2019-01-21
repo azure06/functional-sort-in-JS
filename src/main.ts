@@ -60,7 +60,7 @@ const quicksort = (values: number[]) => {
 };
 
 /**
- * Sort array of natural numbers values
+ * Sort an array of natural numbers values
  *
  * @param values List of natural numbers
  * @return Sorted List of natural numbers
