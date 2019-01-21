@@ -59,7 +59,32 @@ const quicksort = (values: number[]) => {
   return sort(values);
 };
 
+/**
+ * Sort array of natural numbers values
+ *
+ * @param values List of natural numbers
+ * @return Sorted List of natural numbers
+ */
+const countingsort = (values: number[]): number[] => {
+  const indices = values.reduce((accumulator: number[], value: number) => {
+    accumulator[value] = (accumulator[value] || 0) + 1;
+    return accumulator;
+  }, []);
+
+  for (let i = 0; i < indices.length; i++) {
+    indices[i] = (indices[i - 1] || 0) + (indices[i] || 0);
+  }
+
+  return values.reduce((accumulator: number[], currentValue: number) => {
+    const valueIndex = indices[currentValue];
+    accumulator[valueIndex] = currentValue;
+    indices[currentValue] -= 1;
+    return accumulator;
+  }, []);
+};
+
 export default {
   mergesort,
-  quicksort
+  quicksort,
+  countingsort
 };
